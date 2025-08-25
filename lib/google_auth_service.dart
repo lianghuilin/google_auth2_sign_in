@@ -5,6 +5,10 @@ class GoogleAuthService {
   final GoogleSignIn _googleSignIn = GoogleSignIn.instance;
   bool _isGoogleSignInInitialized = false;
   static final scopes = ['openid', 'email'];
+  static final String googleWebClientId =
+      "974133795038-2klsneg3ncgt472e6jv6trkiobcg8nuo.apps.googleusercontent.com";
+  static final String googleClientId =
+      "974133795038-74q4o91k634sbqjio5h26pvhgodlvtd6.apps.googleusercontent.com";
 
   GoogleAuthService() {
     _initializeGoogleSignIn();
@@ -12,14 +16,7 @@ class GoogleAuthService {
 
   Future<void> _initializeGoogleSignIn() async {
     try {
-      await _googleSignIn.initialize(
-        // clientId:
-        //     "974133795038-2klsneg3ncgt472e6jv6trkiobcg8nuo.apps.googleusercontent.com",
-        // serverClientId:
-        //     "974133795038-74q4o91k634sbqjio5h26pvhgodlvtd6.apps.googleusercontent.com",
-        serverClientId:
-            "974133795038-2klsneg3ncgt472e6jv6trkiobcg8nuo.apps.googleusercontent.com",
-      );
+      await _googleSignIn.initialize(serverClientId: googleClientId);
       _isGoogleSignInInitialized = true;
     } catch (e) {
       SmartDialog.showToast("初始化Google登录失败: ${e.toString()}");
